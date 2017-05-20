@@ -74,6 +74,10 @@ class NumberInput extends Component {
     render() {
         return (
             <TextInput
+                style={ss.textInput}
+                autoCapitalize='characters'
+                underlineColorAndroid='#35454D'
+                selectionColor='#B3E5FF'
                 onChangeText={this.props.func}
                 value={this.props.val.toString()}
             />
@@ -124,6 +128,7 @@ class NumberConverter extends Component {
     // Produce output
     produceOutput() {
         var result = parseInt(this.state.inputNumber, this.state.inputType);
+        if (isNaN(result)) return "INVALID INPUT";
         result = result.toString(this.state.outputType);
         return result.toUpperCase();
     }
@@ -132,10 +137,10 @@ class NumberConverter extends Component {
     render() {
         return (
             // Body
-            <View>
+            <View style={{backgroundColor: '#0a0', flex: 1}}>
 
                 {/* Input Section */}
-                <View style={[ss.section, {backgroundColor: '#AAF'}]}>
+                <View style={[ss.section, {backgroundColor: '#7295A6'}]}>
                     <Text style={ss.title}>Input:</Text>
                     <NumberTypeSelector
                         func={this.changeInputType}
@@ -148,14 +153,14 @@ class NumberConverter extends Component {
                 </View>
 
                 {/* Output Section */}
-                <View style={[ss.section, {backgroundColor: '#FAA'}]}>
+                <View style={[ss.section, {backgroundColor: '#465B66', flex: 1}]}>
                     <Text style={ss.title}>Output:</Text>
                     <NumberTypeSelector
                         func={this.changeOutputType}
                         type={this.state.outputType}
                     />
                     <View style={ss.outputContainer}>
-                        <Text>{this.produceOutput()}</Text>
+                        <Text style={ss.textInput}>{this.produceOutput()}</Text>
                     </View>
                 </View>
             </View>
