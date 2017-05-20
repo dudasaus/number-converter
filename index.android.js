@@ -80,6 +80,7 @@ class NumberInput extends Component {
                 selectionColor='#B3E5FF'
                 onChangeText={this.props.func}
                 value={this.props.val.toString()}
+                keyboardType={(this.props.type==HEXADECIMAL)?'default':'numeric'}
             />
         );
     }
@@ -149,6 +150,7 @@ class NumberConverter extends Component {
                     <NumberInput
                         func={this.changeInputNumber}
                         val={this.state.inputNumber}
+                        type={this.state.inputType}
                     />
                 </View>
 
