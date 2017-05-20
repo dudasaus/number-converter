@@ -121,11 +121,26 @@ class OutputSection extends Component {
 }
 
 class NumberConverter extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            inputType: BINARY,
+            outputType: BINARY,
+            intputNumber: 0,
+            outputNumber: 0
+        }
+    }
     render() {
         return (
             <View>
-                <InputSection/>
-                <OutputSection/>
+                <InputSection
+                    type={this.state.inputType}
+                    number={this.state.inputNumber}
+                />
+                <OutputSection
+                    type={this.state.outputType}
+                    number={this.state.outputNumber}
+                />
             </View>
         );
     }
