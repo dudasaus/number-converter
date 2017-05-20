@@ -26,7 +26,7 @@ const style = StyleSheet.create({
         borderBottomRightRadius: BBR
     },
     buttonActive: {
-        backgroundColor: '#AAA'
+        backgroundColor: '#FFF'
     },
     title: {
         fontSize: 24,

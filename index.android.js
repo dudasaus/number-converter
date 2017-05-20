@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 
 const ss = require('./style.js');
-const BINARY = 0, DECIMAL = 1, HEXADECIMAL = 2;
+const BINARY = 2, DECIMAL = 10, HEXADECIMAL = 16;
 
 class NTSButton extends Component {
     constructor(props) {
@@ -42,36 +42,27 @@ class NumberTypeSelector extends Component {
         }
     }
 
-    changeSelection(s) {
-        let that = this;
-        return () => {
-            that.setState({
-                selection: s
-            });
-        }
-    }
-
     render() {
         return (
             <View style={ss.buttonContainer}>
                 <NTSButton
                     style={[ss.buttonMiddle, ss.buttonFirst]}
                     name="Binary"
-                    onPress={this.changeSelection(BINARY)}
-                    active={(this.state.selection == BINARY)}
+                    onPress={this.props.func(BINARY)}
+                    active={(this.props.type == BINARY)}
                 />
                 <NTSButton
                     style={[ss.buttonMiddle]}
                     name="Decimal"
-                    onPress={this.changeSelection(DECIMAL)}
-                    active={(this.state.selection == DECIMAL)}
+                    onPress={this.props.func(DECIMAL)}
+                    active={(this.props.type == DECIMAL)}
 
                 />
                 <NTSButton
                     style={[ss.buttonMiddle, ss.buttonLast]}
                     name="Hexadecimal"
-                    onPress={this.changeSelection(HEXADECIMAL)}
-                    active={(this.state.selection == HEXADECIMAL)}
+                    onPress={this.props.func(HEXADECIMAL)}
+                    active={(this.props.type == HEXADECIMAL)}
                 />
             </View>
         );
@@ -79,68 +70,94 @@ class NumberTypeSelector extends Component {
 }
 
 class NumberInput extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { text: '00000000' };
-    }
 
     render() {
         return (
             <TextInput
-                onChangeText={(text) => this.setState({text})}
-                value={this.state.text}
+                onChangeText={this.props.func}
+                value={this.props.val.toString()}
             />
         );
     }
 }
 
-class InputSection extends Component {
-    render() {
-        return (
-            <View style={[ss.section, {backgroundColor: '#AAF'}]}>
-                <Text style={ss.title}>Input:</Text>
-                <NumberTypeSelector/>
-                <NumberInput/>
-            </View>
-        );
-    }
-}
-
-class OutputSection extends Component {
-    render() {
-        return (
-            <View style={[ss.section, {backgroundColor: '#FAA'}]}>
-                <Text style={ss.title}>Output:</Text>
-                <NumberTypeSelector/>
-                <View style={ss.outputContainer}>
-                    <Text>00001111</Text>
-                </View>
-            </View>
-        );
-    }
-}
-
 class NumberConverter extends Component {
+    // constructor
     constructor(props) {
         super(props);
+
+        // State
         this.state = {
             inputType: BINARY,
             outputType: BINARY,
-            intputNumber: 0,
+            inputNumber: 0,
             outputNumber: 0
         }
+
+        // Bind functions
+        this.changeInputType = this.changeInputType.bind(this);
+        this.changeOutputType = this.changeOutputType.bind(this);
+        this.changeInputNumber = this.changeInputNumber.bind(this);
     }
+
+    // Functions that deal with user input
+    changeInputType(val) {
+        let that = this;
+        return () => {
+            that.setState({inputType: val});
+            console.log(that.state);
+        }
+    }
+
+    changeOutputType(val) {
+        let that = this;
+        return () => {
+            that.setState({outputType: val});
+            console.log(that.state);
+        }
+    }
+
+    changeInputNumber(val) {
+        this.setState({inputNumber: val});
+    }
+
+    // Produce output
+    produceOutput() {
+        var result = parseInt(this.state.inputNumber, this.state.inputType);
+        result = result.toString(this.state.outputType);
+        return result.toUpperCase();
+    }
+
+    // Render
     render() {
         return (
+            // Body
             <View>
-                <InputSection
-                    type={this.state.inputType}
-                    number={this.state.inputNumber}
-                />
-                <OutputSection
-                    type={this.state.outputType}
-                    number={this.state.outputNumber}
-                />
+
+                {/* Input Section */}
+                <View style={[ss.section, {backgroundColor: '#AAF'}]}>
+                    <Text style={ss.title}>Input:</Text>
+                    <NumberTypeSelector
+                        func={this.changeInputType}
+                        type={this.state.inputType}
+                    />
+                    <NumberInput
+                        func={this.changeInputNumber}
+                        val={this.state.inputNumber}
+                    />
+                </View>
+
+                {/* Output Section */}
+                <View style={[ss.section, {backgroundColor: '#FAA'}]}>
+                    <Text style={ss.title}>Output:</Text>
+                    <NumberTypeSelector
+                        func={this.changeOutputType}
+                        type={this.state.outputType}
+                    />
+                    <View style={ss.outputContainer}>
+                        <Text>{this.produceOutput()}</Text>
+                    </View>
+                </View>
             </View>
         );
     }
