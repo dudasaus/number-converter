@@ -16,7 +16,7 @@ const style = StyleSheet.create({
         marginLeft: 1,
         marginRight: 1,
         backgroundColor: '#607D8B',
-        color: '#FFF'
+        color: '#FFF',
     },
     buttonFirst: {
         borderTopLeftRadius: BBR,
@@ -32,12 +32,26 @@ const style = StyleSheet.create({
     },
     title: {
         color: '#FFF',
-        fontSize: 24,
+        fontSize: 16,
         fontWeight: 'bold',
         marginBottom: 12
     },
     section: {
-        padding: 12,
+        paddingTop: 12,
+        paddingLeft: 16,
+        paddingRight: 16
+    },
+    titleBar: {
+        height: 48,
+        backgroundColor: '#B3E5FF',
+        elevation: 2,
+        justifyContent: 'center',
+        paddingLeft: 16
+    },
+    titleBarText: {
+        fontSize: 16,
+        color: '#FFF',
+        fontWeight: 'bold'
     },
     outputContainer: {
         borderWidth: 1,

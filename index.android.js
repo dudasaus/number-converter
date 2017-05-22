@@ -69,7 +69,12 @@ class NumberConverter extends Component {
         return (
             // Body
             <View style={{backgroundColor: '#0a0', flex: 1}}>
-
+                {/* Title bar */}
+                <View style={ss.titleBar}>
+                    <Text style={ss.titleBarText}>
+                        Number Converter
+                    </Text>
+                </View>
                 {/* Input Section */}
                 <View style={[ss.section, {backgroundColor: '#7295A6'}]}>
                     <Text style={ss.title}>Input:</Text>
