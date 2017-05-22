@@ -15,6 +15,7 @@ import {
 } from './components.js';
 
 const ss = require('./style.js');
+const colors = require('./colors.js');
 
 class NumberConverter extends Component {
     // constructor
@@ -68,7 +69,7 @@ class NumberConverter extends Component {
     render() {
         return (
             // Body
-            <View style={{backgroundColor: '#0a0', flex: 1}}>
+            <View style={{flex: 1}}>
                 {/* Title bar */}
                 <View style={ss.titleBar}>
                     <Text style={ss.titleBarText}>
@@ -76,7 +77,7 @@ class NumberConverter extends Component {
                     </Text>
                 </View>
                 {/* Input Section */}
-                <View style={[ss.section, {backgroundColor: '#7295A6'}]}>
+                <View style={[ss.section]}>
                     <Text style={ss.title}>Input:</Text>
                     <NumberTypeSelector
                         func={this.changeInputType}
@@ -90,7 +91,7 @@ class NumberConverter extends Component {
                 </View>
 
                 {/* Output Section */}
-                <View style={[ss.section, {backgroundColor: '#465B66', flex: 1}]}>
+                <View style={[ss.section, {flex: 1}]}>
                     <Text style={ss.title}>Output:</Text>
                     <NumberTypeSelector
                         func={this.changeOutputType}

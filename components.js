@@ -11,6 +11,7 @@ import {
 // const values
 BINARY = 2, DECIMAL = 10, HEXADECIMAL = 16;
 const ss = require('./style.js');
+const colors = require('./colors.js');
 
 // number type selector buttons
 class NTSButton extends Component {
@@ -76,8 +77,8 @@ class NumberInput extends Component {
             <TextInput
                 style={ss.textInput}
                 autoCapitalize='characters'
-                underlineColorAndroid='#35454D'
-                selectionColor='#B3E5FF'
+                underlineColorAndroid={colors.main}
+                selectionColor={colors.main}
                 onChangeText={this.props.func}
                 value={this.props.val.toString()}
                 keyboardType={(this.props.type==HEXADECIMAL)?'default':'numeric'}

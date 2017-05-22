@@ -1,5 +1,7 @@
 // Import
 import { StyleSheet } from 'react-native'
+const colors = require('./colors.js');
+
 
 // Button Border Radius
 const BBR = 8;
@@ -15,8 +17,8 @@ const style = StyleSheet.create({
         padding: 12,
         marginLeft: 1,
         marginRight: 1,
-        backgroundColor: '#607D8B',
-        color: '#FFF',
+        backgroundColor: colors.plain,
+        color: colors.white,
     },
     buttonFirst: {
         borderTopLeftRadius: BBR,
@@ -27,11 +29,11 @@ const style = StyleSheet.create({
         borderBottomRightRadius: BBR
     },
     buttonActive: {
-        backgroundColor: '#B3E5FF',
-        color: '#232E33'
+        backgroundColor: colors.light,
+        color: colors.darkest
     },
     title: {
-        color: '#FFF',
+        color: colors.main,
         fontSize: 16,
         fontWeight: 'bold',
         marginBottom: 12
@@ -39,30 +41,31 @@ const style = StyleSheet.create({
     section: {
         paddingTop: 12,
         paddingLeft: 16,
-        paddingRight: 16
+        paddingRight: 16,
+        backgroundColor: colors.white
     },
     titleBar: {
         height: 48,
-        backgroundColor: '#B3E5FF',
+        backgroundColor: colors.main,
         elevation: 2,
         justifyContent: 'center',
         paddingLeft: 16
     },
     titleBarText: {
         fontSize: 16,
-        color: '#FFF',
+        color: colors.white,
         fontWeight: 'bold'
     },
     outputContainer: {
-        borderWidth: 1,
-        borderColor: '#232E33',
-        backgroundColor: '#7295A6',
+        borderBottomWidth: 1,
+        borderColor: colors.darkest,
+        backgroundColor: colors.white,
         padding: 4,
         marginTop: 8,
         marginBottom: 4
     },
     textInput: {
-        color: '#FFF',
+        color: colors.darkest,
         fontSize: 18
     }
 });
