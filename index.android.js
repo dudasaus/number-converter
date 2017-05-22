@@ -9,6 +9,7 @@ import {
 import {
     NumberTypeSelector,
     NumberInput,
+    CreativeLink,
     BINARY,
     DECIMAL,
     HEXADECIMAL,
@@ -24,9 +25,9 @@ class NumberConverter extends Component {
 
         // State
         this.state = {
-            inputType: BINARY,
-            outputType: BINARY,
-            inputNumber: 0,
+            inputType: HEXADECIMAL,
+            outputType: DECIMAL,
+            inputNumber: '4E',
             outputNumber: 0
         }
 
@@ -54,6 +55,7 @@ class NumberConverter extends Component {
     }
 
     changeInputNumber(val) {
+        val = val.toUpperCase();
         this.setState({inputNumber: val});
     }
 
@@ -100,6 +102,12 @@ class NumberConverter extends Component {
                     <View style={ss.outputContainer}>
                         <Text style={ss.textInput}>{this.produceOutput()}</Text>
                     </View>
+                </View>
+
+                {/* Footer */}
+                <View style={ss.footer}>
+                    <CreativeLink/>
+                    <Text style={ss.footerText}>App by Austin Dudas</Text>
                 </View>
             </View>
         );

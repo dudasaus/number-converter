@@ -5,7 +5,8 @@ import React, { Component } from 'react';
 import {
   Text,
   TextInput,
-  View
+  View,
+  Linking
 } from 'react-native';
 
 // const values
@@ -47,20 +48,20 @@ class NumberTypeSelector extends Component {
             <View style={ss.buttonContainer}>
                 <NTSButton
                     style={[ss.buttonMiddle, ss.buttonFirst]}
-                    name="Binary"
+                    name="BINARY"
                     onPress={this.props.func(BINARY)}
                     active={(this.props.type == BINARY)}
                 />
                 <NTSButton
                     style={[ss.buttonMiddle]}
-                    name="Decimal"
+                    name="DECIMAL"
                     onPress={this.props.func(DECIMAL)}
                     active={(this.props.type == DECIMAL)}
 
                 />
                 <NTSButton
                     style={[ss.buttonMiddle, ss.buttonLast]}
-                    name="Hexadecimal"
+                    name="HEXADECIMAL"
                     onPress={this.props.func(HEXADECIMAL)}
                     active={(this.props.type == HEXADECIMAL)}
                 />
@@ -72,12 +73,32 @@ class NumberTypeSelector extends Component {
 // number input
 class NumberInput extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            focused: false
+        }
+
+        this.onFocus = this.onFocus.bind(this);
+        this.onUnfocus = this.onUnfocus.bind(this);
+    }
+
+    onFocus() {
+        this.setState({focused: true});
+    }
+
+    onUnfocus() {
+        this.setState({focused: false});
+    }
+
     render() {
         return (
             <TextInput
                 style={ss.textInput}
                 autoCapitalize='characters'
-                underlineColorAndroid={colors.main}
+                onEndEditing={this.onUnfocus}
+                onFocus={this.onFocus}
+                underlineColorAndroid={(this.state.focused)?colors.main:colors.black}
                 selectionColor={colors.main}
                 onChangeText={this.props.func}
                 value={this.props.val.toString()}
@@ -87,10 +108,30 @@ class NumberInput extends Component {
     }
 }
 
+class CreativeLink extends Component {
+
+    onClick = () => {
+        const creativeUrl = 'http://creative2017.com';
+        Linking.canOpenURL(creativeUrl).then(supported => {
+            if (supported) {
+                Linking.openURL(creativeUrl);
+            }
+        });
+    };
+
+    render() {
+        return (
+            <Text style={ss.link} onPress={this.onClick}>#creative2017</Text>
+        );
+    }
+
+}
+
 module.exports = {
     BINARY,
     DECIMAL,
     HEXADECIMAL,
     NumberTypeSelector,
-    NumberInput
+    NumberInput,
+    CreativeLink
 }

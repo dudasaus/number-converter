@@ -14,28 +14,35 @@ const style = StyleSheet.create({
         //flex: 1
     },
     buttonMiddle: {
-        padding: 12,
-        marginLeft: 1,
-        marginRight: 1,
-        backgroundColor: colors.plain,
-        color: colors.white,
+        paddingLeft: 16,
+        paddingRight: 16,
+        paddingTop: 8,
+        paddingBottom: 8,
+        marginLeft: 8,
+        marginRight: 8,
+        backgroundColor: colors.white,
+        color: colors.main,
+        borderRadius: 2
     },
     buttonFirst: {
-        borderTopLeftRadius: BBR,
-        borderBottomLeftRadius: BBR
+        // borderTopLeftRadius: BBR,
+        // borderBottomLeftRadius: BBR
+        marginLeft: 0
     },
     buttonLast: {
-        borderTopRightRadius: BBR,
-        borderBottomRightRadius: BBR
+        // borderTopRightRadius: BBR,
+        // borderBottomRightRadius: BBR
+        marginRight: 0
     },
     buttonActive: {
-        backgroundColor: colors.light,
-        color: colors.darkest
+        backgroundColor: colors.main,
+        color: colors.white,
+        fontWeight: 'bold'
     },
     title: {
         color: colors.main,
         fontSize: 16,
-        fontWeight: 'bold',
+        // fontWeight: 'bold',
         marginBottom: 12
     },
     section: {
@@ -57,16 +64,29 @@ const style = StyleSheet.create({
         fontWeight: 'bold'
     },
     outputContainer: {
-        borderBottomWidth: 1,
-        borderColor: colors.darkest,
+        borderBottomWidth: 2,
+        borderColor: colors.black,
         backgroundColor: colors.white,
         padding: 4,
         marginTop: 8,
         marginBottom: 4
     },
     textInput: {
-        color: colors.darkest,
+        color: colors.black,
         fontSize: 18
+    },
+    footer: {
+        alignItems: 'center',
+        paddingBottom: 8,
+        backgroundColor: colors.white
+    },
+    footerText: {
+        fontSize: 10
+    },
+    link: {
+        fontSize: 10,
+        color: colors.main,
+        textDecorationLine: 'underline'
     }
 });
 
