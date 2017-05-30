@@ -1,5 +1,5 @@
 const colors = {
-    main: '#2196F3',
+    main: '#673AB7',
     /*
         blue: 2196F3
         purple: 673AB7

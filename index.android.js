@@ -25,9 +25,9 @@ class NumberConverter extends Component {
 
         // State
         this.state = {
-            inputType: HEXADECIMAL,
-            outputType: DECIMAL,
-            inputNumber: '4E',
+            inputType: BINARY,
+            outputType: BINARY,
+            inputNumber: '0',
             outputNumber: 0
         }
 
